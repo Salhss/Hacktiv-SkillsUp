@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "HTML Dasar",
+        "description": "HTML (Hypertext Markup Language) adalah bahasa markup dasar yang digunakan untuk membuat halaman web. Bahasa ini terdiri dari tag, atribut, dan nilai yang digunakan untuk memformat dan menampilkan konten pada halaman web. Beberapa tag HTML dasar yang sering digunakan antara lain tag untuk menampilkan teks, gambar, tabel, dan link. Dengan menggunakan HTML dasar, Anda dapat membuat halaman web yang sederhana dan dapat diakses melalui browser web. HTML juga menjadi dasar bagi teknologi web lainnya, seperti CSS dan JavaScript, yang memungkinkan pembuatan halaman web yang lebih interaktif dan menarik.",
+        "duration": 180,
+        "CategoryId": 1,
+        "linkVideo": "https://www.youtube.com/watch?v=NBZ9Ro6UKV8&list=PLFIM0718LjIVuONHysfOK0ZtiqUWvrx4F"
+    },
+    {
+        "id": 2,
+        "name": "Data Science Introduction",
+        "description": "Data Science adalah ilmu multidisiplin yang mempelajari cara mengambil, mengorganisir, dan menganalisis data untuk menghasilkan informasi yang bermanfaat. Bidang ini menggabungkan statistik, matematika, dan teknologi informasi untuk membantu dalam pengambilan keputusan bisnis yang lebih baik. Data Science juga mencakup teknik-teknik seperti Machine Learning, Artificial Intelligence, dan Big Data, yang memungkinkan analisis data yang lebih kompleks dan mendalam. Tujuan utama dari Data Science adalah untuk menemukan pola dan informasi baru dari data yang ada dan menggunakan informasi ini untuk membuat keputusan yang lebih baik secara efektif dan efisien.",
+        "duration": 180,
+        "CategoryId": 4,
+        "linkVideo": "https://www.youtube.com/watch?v=_ozeKsOtqHI&list=PLrjFLXHvfM2gdSVPYzmX5_FIcnn66LJtz"
+    }
+]
