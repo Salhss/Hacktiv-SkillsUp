@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+</head>
+<body>
+    <h3>What kind of Category you want to update?</h3>
+
+    <form action="/category/edit/<%=getResult.id%>" method="post">
+        <p>Category Name: <br>
+        <input type="text" name="name" placeholder="name category" value="<%=getResult.name%>">
+        </p>
+        <p>
+            <input type="submit" value="Save Change">
+        </p>
+    </form>
+</body>
+</html>

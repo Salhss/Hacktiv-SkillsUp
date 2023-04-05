@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course List</title>
+</head>
+
+<body>
+    <h1>Course Menu</h1>
+    <a href="/<%=getResult.id%>/courses/add">Add More Course</a>
+    <table border="1" style="width: 500px;">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Title Course</th>
+                <th>Total Duration</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+            <% getResult.dataValues.Courses.forEach((e, i)=> {%>
+                <tr>
+                    <td><%=i+1%></td>
+                    <td><%=e.name%></td>
+                    <td><%=e.duration%></td>
+                    <td>
+                        <a href="/<%=e.CategoryId%>/courses/<%=e.id%>"><button>Detail</button></a>
+                        <a href="/<%=e.CategoryId%>/courses/<%=e.id%>/edit"><button>Edit</button></a>
+                        <a href="/<%=e.CategoryId%>/courses/<%=e.id%>/delete"><button>Delete</button></a>
+                    </td>
+                </tr>
+                <%})%>
+        </tbody>
+    </table>
+</body>
+
+</html>
