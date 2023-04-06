@@ -12,13 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Course.belongsTo(models.Category)
+      Course.belongsToMany(models.User, { through: models.CoursesUser })
     }
   }
   Course.init({
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
     duration: DataTypes.INTEGER,
-    CategoryId: DataTypes.INTEGER
+    CategoryId: DataTypes.INTEGER,
+    videoUrl: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Course',
