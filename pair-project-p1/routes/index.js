@@ -9,5 +9,10 @@ router.get('/category/delete/:categoryId', Controller.deleteCategory)//
 router.get('/category/edit/:categoryId', Controller.formEditCategory)//
 router.post('/category/edit/:categoryId', Controller.updateCategory)//
 router.get('/:categoryId', Controller.coursesList)//
-router.use('/:categoryId/courses', require("./course"))
-module.exports = router;
+router.get('/:categoryId/courses/add', Controller.formAddCourses)//
+router.post('/:categoryId/courses/add', Controller.createCourses)//
+router.get('/:categoryId/courses/:courseId', Controller.coursesDetail)//
+router.get('/:categoryId/courses/:courseId/delete', Controller.deleteCourses)
+router.get('/:categoryId/courses/:courseId/edit', Controller.formEditCourses)//
+router.post('/:categoryId/courses/:courseId/edit', Controller.updateCourses)//
+module.exports = router;  

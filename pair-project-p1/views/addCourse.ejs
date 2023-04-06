@@ -8,6 +8,22 @@
 </head>
 <body>
     <h1>Add Course</h1>
-    <form action="/:categoryId/courses/add" method="post"></form>
+    <form action="/<%=getResult.id%>/courses/add" method="post">
+        <p>Title Name: <br>
+        <input type="text" name="name">
+        </p>
+        <p>Duration: <br>
+        <input type="number" name="duration">
+        </p>
+        <p>Description: <br>
+        <textarea name="description" cols="30" rows="10"></textarea>
+        </p>
+        <p>Link Video: <br>
+        <textarea name="videoUrl" id="" cols="30" rows="10"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="add course">
+        </p>
+    </form>
 </body>
 </html>  
