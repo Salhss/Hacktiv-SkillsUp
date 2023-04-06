@@ -1,7 +1,71 @@
-const { Category, Course } = require('../models')
+const { Category, Course, Profile, User } = require('../models')
 const { Op, where } = require('sequelize')
+const bcrypt = require('bcryptjs');
 
 class Controller {
+    static getSignUp(req, res){
+        res.render('signup')
+    }
+
+    static postSignUp(req, res){
+        const newProfile = {
+            name: req.body.name,
+            gender: req.body.gender,
+            birthDate: req.body.birthDate,
+            phoneNumber: req.body.phoneNumber
+        }
+
+        Profile.create(newProfile)
+        .then((profile) => {
+            const newUser = {
+                name: req.body.username,
+                email: req.body.email,
+                role: req.body.role,
+                password: req.body.password,
+                ProfilId: profile.id
+            }
+
+            return User.create(newUser)
+        })
+        .then(() => {
+            res.redirect('/login')
+        })
+        .catch((error) => {
+            console.error(error);
+          })
+    }
+
+    static getLogin(req, res){
+        const { error } = req.query
+        res.render('login', { error })
+    }
+
+    static postLogin(req, res){
+        const { username, password } = req.body
+
+        User.findOne({ where: {name: username} })
+        .then((user) => {
+            if(user) {
+                const isPasswordValid = bcrypt.compareSync(password, user.password);
+
+                if(isPasswordValid) {
+
+                    req.session.userId = user.id;
+
+                    return res.redirect('/')
+
+                } else {
+                    const error = "invalid username/password"
+                    return res.redirect(`/login?error=${error}`)
+                }
+            } else {
+                const error = "invalid username/password"
+                return res.redirect(`/login?error=${error}`)
+            }
+        })
+        .catch((err) => {res.send(err)
+        console.log(err)})
+    }
     static verfication(req, res) {
         res.render('verfication')
     }

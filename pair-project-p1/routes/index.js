@@ -2,9 +2,24 @@ const express = require('express');
 const Controller = require('../controllers/controller');
 const router = express.Router()
 
-router.get('/', Controller.verfication)
+
 router.get('/student', Controller.studentHome)
 router.get('/admin', Controller.home)//
+router.get("/signup", Controller.getSignUp)
+router.post("/signup", Controller.postSignUp)
+router.get("/login", Controller.getLogin)
+router.post("/login", Controller.postLogin)
+
+router.use(function(req, res, next) {
+    if(!req.session.userId) {
+        const error = 'Please log in first!'
+        res.redirect(`login?error=${error}`)
+    } else {
+        next()
+    }
+})
+
+router.get('/', Controller.verfication)
 router.get('/category/add', Controller.formAddCategory)//
 router.post('/category/add', Controller.createCategory)//
 router.get('/category/delete/:categoryId', Controller.deleteCategory)//
