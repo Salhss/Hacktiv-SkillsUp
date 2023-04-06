@@ -52,7 +52,12 @@ class Controller {
 
                     req.session.userId = user.id;
 
-                    return res.redirect('/')
+                    if(user.role === 'administrator') {
+                        return res.redirect('/admin')
+                    } else {
+                        return res.redirect('/student')
+                    }
+
 
                 } else {
                     const error = "invalid username/password"
