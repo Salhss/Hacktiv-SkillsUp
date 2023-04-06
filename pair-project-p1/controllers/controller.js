@@ -51,6 +51,7 @@ class Controller {
                 if(isPasswordValid) {
 
                     req.session.userId = user.id;
+                    req.session.userRole = user.role;
 
                     if(user.role === 'administrator') {
                         return res.redirect('/admin')
@@ -71,8 +72,8 @@ class Controller {
         .catch((err) => {res.send(err)
         console.log(err)})
     }
-    static verfication(req, res) {
-        res.render('verfication')
+    static landingPage(req, res) {
+        res.render('landingpage')
     }
     static home(req, res) {
         const {search} = req.query
