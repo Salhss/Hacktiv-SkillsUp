@@ -8,6 +8,7 @@ router.get("/signup", Controller.getSignUp)
 router.post("/signup", Controller.postSignUp)
 router.get("/login", Controller.getLogin)
 router.post("/login", Controller.postLogin)
+router.get("/logout", Controller.getLogout)
 
 router.use(function(req, res, next) {
     if(!req.session.userId) {
@@ -50,4 +51,7 @@ router.get('/student/:categoryId/courses/:courseId', student, Controller.courses
 router.get('/:categoryId/courses/:courseId/delete', admin, Controller.deleteCourses)
 router.get('/:categoryId/courses/:courseId/edit', admin, Controller.formEditCourses)//
 router.post('/:categoryId/courses/:courseId/edit', admin, Controller.updateCourses)//
+
+
+
 module.exports = router;  
