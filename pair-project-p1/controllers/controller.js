@@ -2,10 +2,33 @@ const { Category, Course } = require('../models')
 const { Op, where } = require('sequelize')
 
 class Controller {
+    static verfication(req, res) {
+        res.render('verfication')
+    }
     static home(req, res) {
-        Category.findAll({})
+        const {search} = req.query
+        let option = {}
+        if(search) {
+            option = {where: {name: {[Op.iLike]: `%${search}%`}}}
+        }
+        Category.findAll(option)
             .then((result) => {
                 res.render('home', { result })
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
+    }
+    static studentHome(req, res) {
+        const {search} = req.query
+        let option = {}
+        if(search) {
+            option = {where: {name: {[Op.iLike]: `%${search}%`}}}
+        }
+        Category.findAll(option)
+            .then((result) => {
+                res.render('studentHome', { result })
             })
             .catch(err => {
                 console.log(err)
@@ -19,6 +42,20 @@ class Controller {
                 console.log(result[0].dataValues.Courses)
                 let getResult = result[0]
                 res.render('coursesList', { getResult })
+
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
+    }
+    static coursesListStudent(req, res) {
+        const { categoryId } = req.params
+        Category.findAll({ where: { id: categoryId }, include: [{ model: Course }] })
+            .then((result) => {
+                console.log(result[0].dataValues.Courses)
+                let getResult = result[0]
+                res.render('coursesListStudent', { getResult })
 
             })
             .catch(err => {
@@ -66,8 +103,29 @@ class Controller {
                 res.send(err)
             })
     }
+    static coursesDetailStudent(req, res) {
+        const { categoryId, courseId } = req.params
+        Course.findAll({ where: { id: courseId } })
+            .then((result) => {
+                let getResult = result[0]
+                res.render('courseDetailStudent', { getResult })
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
+    }
     static deleteCourses(req, res) {
-        res.send('ini deleteCourses')
+        const { categoryId, courseId } = req.params
+        Course.destroy({ where: { id: courseId } })
+            .then(() => {
+                res.redirect(`/${categoryId}`)
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
+        // res.send('ini deleteCourses')
     }
     static formEditCourses(req, res) {
         const { categoryId, courseId } = req.params
@@ -100,21 +158,12 @@ class Controller {
         })
     }
     static formAddCategory(req, res) {
-        const { categoryId } = req.params
-        Course.destroy({ where: { id: categoryId } })
-            .then(() => {
-                res.redirect('/')
-            })
-            .catch(err => {
-                console.log(err)
-                res.send(err)
-            })
-        res.render('addCategory')
+       res.render('addCategory')
     }
     static createCategory(req, res) {
         Category.create({ name: req.body.name })
             .then(() => {
-                res.redirect('/')
+                res.redirect('/admin')
             })
             .catch(err => {
                 console.log(err)
@@ -122,10 +171,10 @@ class Controller {
             })
     }
     static deleteCategory(req, res) {
-        const { categoryId, courseId } = req.params
-        Category.destroy({ where: { id: courseId } })
+        const { categoryId } = req.params
+        Category.destroy({ where: { id: categoryId } })
             .then(() => {
-                res.redirect(`/${categoryId}`)
+                res.redirect(`/admin`)
             })
             .catch(err => {
                 console.log(err)
@@ -148,7 +197,7 @@ class Controller {
         let data = { name: req.body.name }
         Category.update(data, { where: { id: req.params.categoryId } })
             .then(() => {
-                res.redirect('/')
+                res.redirect('/admin')
             })
             .catch(err => {
                 console.log(err)

@@ -10,8 +10,6 @@
 
 <body>
     <h1>Course Menu</h1>
-    <a href="/student/<%=getResult.id%>"><button style="margin-bottom: 15px;">Student's View</button></a> <br>
-    <a href="/<%=getResult.id%>/courses/add"><button style="margin-bottom: 10px;">Add More Course</button> </a>
     <table border="1" style="width: 500px;">
         <thead>
             <tr>
@@ -28,9 +26,7 @@
                     <td><%=e.name%></td>
                     <td><%=e.duration%></td>
                     <td>
-                        <a href="/<%=e.CategoryId%>/courses/<%=e.id%>"><button>Detail</button></a>
-                        <a href="/<%=e.CategoryId%>/courses/<%=e.id%>/edit"><button>Edit</button></a>
-                        <a href="/<%=e.CategoryId%>/courses/<%=e.id%>/delete"><button>Delete</button></a>
+                        <a href="/student/<%=e.CategoryId%>/courses/<%=e.id%>"><button>Detail</button></a>
                     </td>
                 </tr>
                 <%})%>
